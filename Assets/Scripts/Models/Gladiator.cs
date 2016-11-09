@@ -1,5 +1,13 @@
-﻿public class Gladiator
+﻿namespace Assets.Scripts.Models
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
+    public class Gladiator
+    {
+        public long Id { get; set; }
+
+        public string Name { get; set; }
+
+        public long? ManagerId { get; set; }
+
+        public bool IsPlayer { get; set; }
+    }
 }
