@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Models
+namespace Assets.Scripts.Logic.Models
 {
     public class Manager
     {

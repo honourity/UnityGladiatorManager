@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Repositories;
-using Assets.Scripts.Models;
+using Assets.Scripts.Logic.Repositories;
+using Assets.Scripts.Logic.Models;
 
 namespace Assets.Scripts.Controllers
 {
@@ -9,7 +9,7 @@ namespace Assets.Scripts.Controllers
         //store all the things
         public static GameController gameController;
 
-        private static DataRepository _managerRepository = new DataRepository();
+        private static ManagerRepository _managerRepository = new ManagerRepository();
 
         protected void Awake()
         {
@@ -20,7 +20,24 @@ namespace Assets.Scripts.Controllers
         // Use this for initialization
         void Start()
         {
-            _managerRepository.GetManagerByName("Tom");
+            //show a welcome screen with choice between loading existing game or making new game
+            // new game screen has a bunch of fields for name and stats
+            // load game screen has a list of player managers to choose from
+            //attempt to load a game, and setup gamestate based on loaded data
+            // set scene based on whichever scene game was at when saved (might only be able to save at a specific point anyway)
+
+            //all scenes TBD
+            // - newgame
+            // - loadgame
+            // - choose first gladiator
+            // - market to buy gladiators
+            // - billboard to enter tournaments
+            // - tournament event itself
+            // - manage existing gladiators
+            // - various story-related dialogue panels
+            // - view your own stats
+
+            //_managerRepository.GetManagerByName("Tom");
         }
 
         // Update is called once per frame

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Models
+﻿namespace Assets.Scripts.Logic.Models
 {
     public class Gladiator
     {

@@ -3,9 +3,9 @@ using System.Data;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
 using System.Text;
-using Assets.Scripts.DataProviders.Interfaces;
+using Assets.Scripts.Logic.DataProviders.Interfaces;
 
-namespace Assets.Scripts.DataProviders
+namespace Assets.Scripts.Logic.DataProviders
 {
     public class SqliteDataProvider : IDataProvider
     {
