@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Logic.DataProviders.Interfaces;
+using Assets.Scripts.Logic.Repositories.Interfaces;
 
 namespace Assets.Scripts.Logic.Repositories
 {
-    public class ConfigRepository
+    public class ConfigurationRepository : IConfigurationRepository
     {
         private static IDataProvider _dataProvider = new Assets.Scripts.Logic.DataProviders.SqliteDataProvider();
 
-        public IDictionary<string, string> GetConfiguration()
+        public IDictionary<string, string> GetAllConfiguration()
         {
             var configs = new Dictionary<string, string>();
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Logic.Repositories
             return configs;
         }
 
-        public void SetConfig(string key, string value)
+        public void SetConfiguration(string key, string value)
         {
             throw new System.NotImplementedException();
         }

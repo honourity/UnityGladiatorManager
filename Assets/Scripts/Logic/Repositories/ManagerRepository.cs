@@ -4,6 +4,7 @@ using Assets.Scripts.Logic.DataProviders.Interfaces;
 using Assets.Scripts.Logic.Helpers;
 using Assets.Scripts.Logic.Repositories.Interfaces;
 using System;
+using System.Linq;
 
 namespace Assets.Scripts.Logic.Repositories
 {
@@ -23,6 +24,12 @@ namespace Assets.Scripts.Logic.Repositories
                 managers.Add(ManagerFromRecord(record));
             }
 
+            return managers;
+        }
+
+        public IEnumerable<Manager> GetPlayerManagers()
+        {
+            var managers = GetManagers().Where(manager => manager.SelfGladiator != null);
             return managers;
         }
 

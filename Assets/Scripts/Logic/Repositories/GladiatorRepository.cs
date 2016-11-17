@@ -43,7 +43,7 @@ namespace Assets.Scripts.Logic.Repositories
         {
             var gladiators = new List<Gladiator>();
 
-            string query = string.Format("SELECT * FROM Gladiators WHERE FK_Manager_Id = '{0}'", id);
+            string query = string.Format("SELECT * FROM Gladiators WHERE ManagerId = '{0}'", id);
             var records = _dataProvider.GetRecords(query);
             foreach (var record in records)
             {

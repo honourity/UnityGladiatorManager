@@ -7,6 +7,8 @@ namespace Assets.Scripts.Logic.Repositories.Interfaces
     {
         IEnumerable<Manager> GetManagers();
 
+        IEnumerable<Manager> GetPlayerManagers();
+
         Manager GetManagerById(long id);
 
         Manager GetManagerByName(string name);

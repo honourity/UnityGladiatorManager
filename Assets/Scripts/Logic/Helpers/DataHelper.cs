@@ -11,9 +11,12 @@ namespace Assets.Scripts.Logic.Helpers
 
             foreach (System.Reflection.PropertyInfo property in properties)
             {
-                if (data.ContainsKey(property.Name.ToLower()))
+                if (data.ContainsKey(property.Name))
                 {
-                    property.SetValue(model, Convert.ChangeType(data[property.Name], property.PropertyType), null);
+                    Type t = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                    object safeValue = (data[property.Name] == null) ? null : Convert.ChangeType(data[property.Name], t);
+
+                    property.SetValue(model, safeValue, null);
                 }
             }
         }

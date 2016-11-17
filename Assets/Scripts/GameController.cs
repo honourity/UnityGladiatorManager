@@ -1,20 +1,36 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Logic.Repositories;
 using Assets.Scripts.Logic.Models;
+using Assets.Scripts.Logic.Repositories.Interfaces;
+using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.Controllers
+namespace Assets.Scripts
 {
     public class GameController : MonoBehaviour
     {
         //store all the things
         public static GameController gameController;
 
-        private static ManagerRepository _managerRepository = new ManagerRepository();
+        //pretend this is dependency injection
+        public static IConfigurationRepository ConfigurationRepository;
+        public static IManagerRepository ManagerRepository;
+        public static IGladiatorRepository GladiatorRepository;
+
+        public UnityEngine.UI.Text LoadGameDropdownText;
+
+        public void LoadGame()
+        {
+            var huh = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
+        }
 
         protected void Awake()
         {
             Object.DontDestroyOnLoad(gameObject);
             gameController = this;
+
+            ConfigurationRepository = new ConfigurationRepository();
+            ManagerRepository = new ManagerRepository();
+            GladiatorRepository = new GladiatorRepository();
         }
 
         // Use this for initialization
