@@ -16,11 +16,16 @@ namespace Assets.Scripts
         public static IManagerRepository ManagerRepository;
         public static IGladiatorRepository GladiatorRepository;
 
+        private GameState _gameState;
+
         public UnityEngine.UI.Text LoadGameDropdownText;
 
         public void LoadGame()
         {
-            var huh = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
+            _gameState.Player = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
+            _gameState.Config = ConfigurationRepository.GetAllConfiguration();
+
+            SceneManager.LoadScene("Game Scene");
         }
 
         protected void Awake()
@@ -31,6 +36,8 @@ namespace Assets.Scripts
             ConfigurationRepository = new ConfigurationRepository();
             ManagerRepository = new ManagerRepository();
             GladiatorRepository = new GladiatorRepository();
+
+            _gameState = new GameState();
         }
 
         // Use this for initialization

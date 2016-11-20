@@ -13,7 +13,7 @@ namespace Assets.Scripts.Logic.Repositories.Interfaces
 
         IEnumerable<Gladiator> GetGladiatorsByManagerId(long id);
 
-        Gladiator GetStarterGladiators();
+        IEnumerable<Gladiator> GetStarterGladiators();
 
         Gladiator NewPlayerGladiator();
 

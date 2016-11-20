@@ -4,6 +4,7 @@ using Assets.Scripts.Logic.Models;
 using Assets.Scripts.Logic.DataProviders.Interfaces;
 using Assets.Scripts.Logic.Helpers;
 using Assets.Scripts.Logic.Repositories.Interfaces;
+using UnityEngine;
 
 namespace Assets.Scripts.Logic.Repositories
 {
@@ -53,7 +54,7 @@ namespace Assets.Scripts.Logic.Repositories
             return gladiators;
         }
 
-        public Gladiator GetStarterGladiators()
+        public IEnumerable<Gladiator> GetStarterGladiators()
         {
             throw new NotImplementedException();
         }

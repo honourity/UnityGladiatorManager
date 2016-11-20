@@ -29,7 +29,7 @@ namespace Assets.Scripts.Logic.Repositories
 
         public IEnumerable<Manager> GetPlayerManagers()
         {
-            var managers = GetManagers().Where(manager => manager.SelfGladiator != null);
+            var managers = GetManagers().Where(manager => manager.ManagerGladiator != null);
             return managers;
         }
 

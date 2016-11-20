@@ -1,4 +1,9 @@
-﻿namespace Assets.Scripts.Logic.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Assets.Scripts.Logic.Models
 {
     public class Gladiator
     {
@@ -8,6 +13,6 @@
 
         public long? ManagerId { get; set; }
 
-        public bool IsPlayer { get; set; }
+        public bool IsManager { get; set; }
     }
 }

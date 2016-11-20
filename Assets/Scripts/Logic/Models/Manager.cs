@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.Logic.Models
 {
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Logic.Models
 
         public IEnumerable<Gladiator> Gladiators { get; set; }
 
-        public Gladiator SelfGladiator { get { return Gladiators.FirstOrDefault(g => g.IsPlayer); } }
+        //figure out how to cast GameObject or define it better
+        public Gladiator ManagerGladiator { get { return Gladiators.FirstOrDefault(g => g.IsManager); } }
     }
 }
