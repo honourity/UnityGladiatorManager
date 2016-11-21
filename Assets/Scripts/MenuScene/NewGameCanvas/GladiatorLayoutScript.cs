@@ -10,13 +10,11 @@ namespace Assets.Scripts.MenuScene.NewGameCanvas
         // Use this for initialization
         void Start()
         {
-            GladiatorPrefab = Resources.Load("GladiatorPrefab") as GameObject;
-
             var gladiators = GameController.GladiatorRepository.GetStarterGladiators();
             foreach (var gladiator in gladiators)
             {
                 var gladiatorPrefabClone = Instantiate(GladiatorPrefab) as GameObject;
-                gladiatorPrefabClone.GetComponent<GladiatorScript>().SetGladiator(gladiator);
+                gladiatorPrefabClone.GetComponent<GladiatorPrefabScript>().Gladiator = gladiator;
                 gladiatorPrefabClone.transform.SetParent(gameObject.transform, false);
             }
         }

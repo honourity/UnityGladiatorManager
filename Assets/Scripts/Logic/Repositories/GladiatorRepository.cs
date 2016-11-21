@@ -20,7 +20,7 @@ namespace Assets.Scripts.Logic.Repositories
             var records = _dataProvider.GetRecords(query);
             foreach (var record in records)
             {
-                gladiators.Add(GladiatorFromRecord(record));
+                gladiators.Add(CreateGladiatorFromRecord(record));
             }
 
             return gladiators;
@@ -30,14 +30,14 @@ namespace Assets.Scripts.Logic.Repositories
         {
             string query = string.Format("SELECT * FROM Gladiators WHERE Id = '{0}'", id);
             var record = _dataProvider.GetRecord(query);
-            return GladiatorFromRecord(record);
+            return CreateGladiatorFromRecord(record);
         }
 
         public Gladiator GetGladiatorByName(string name)
         {
             string query = string.Format("SELECT * FROM Gladiators WHERE Name = '{0}'", name);
             var record = _dataProvider.GetRecord(query);
-            return GladiatorFromRecord(record);
+            return CreateGladiatorFromRecord(record);
         }
 
         public IEnumerable<Gladiator> GetGladiatorsByManagerId(long id)
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Logic.Repositories
             var records = _dataProvider.GetRecords(query);
             foreach (var record in records)
             {
-                gladiators.Add(GladiatorFromRecord(record));
+                gladiators.Add(CreateGladiatorFromRecord(record));
             }
 
             return gladiators;
@@ -56,7 +56,16 @@ namespace Assets.Scripts.Logic.Repositories
 
         public IEnumerable<Gladiator> GetStarterGladiators()
         {
-            throw new NotImplementedException();
+            var gladiators = new List<Gladiator>();
+
+            string query = string.Format("SELECT * FROM GladiatorsPermanent WHERE IsStartingGladiator = 1");
+            var records = _dataProvider.GetRecords(query);
+            foreach (var record in records)
+            {
+                gladiators.Add(CreateGladiatorFromGladiatorPermanentRecord(record));
+            }
+
+            return gladiators;
         }
 
         public Gladiator NewPlayerGladiator()
@@ -71,15 +80,20 @@ namespace Assets.Scripts.Logic.Repositories
 
         #region private
 
-        private Gladiator GladiatorFromRecord(IDictionary<string, object> record)
+        private Gladiator CreateGladiatorFromRecord(IDictionary<string, object> record)
+        {
+            return DataHelper.CreateModelFromData<Gladiator>(record);
+        }
+
+        private Gladiator CreateGladiatorFromGladiatorPermanentRecord(IDictionary<string, object> record)
         {
             Gladiator gladiator = null;
 
-            if ((record != null) && (record.Count > 0))
+            var gladiatorPermanent = DataHelper.CreateModelFromData<GladiatorPermanent>(record);
+            if (gladiatorPermanent != null)
             {
-                gladiator = new Gladiator();
-
-                DataHelper.MapDataToModel(gladiator, record);
+                gladiator = DataHelper.ConvertModelToModel<GladiatorPermanent, Gladiator>(gladiatorPermanent);
+                gladiator.Id = 0;
             }
 
             return gladiator;

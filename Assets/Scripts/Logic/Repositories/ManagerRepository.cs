@@ -21,7 +21,8 @@ namespace Assets.Scripts.Logic.Repositories
             var records = _dataProvider.GetRecords(query);
             foreach (var record in records)
             {
-                managers.Add(ManagerFromRecord(record));
+                managers.Add(GetManagerFromRecord(record));
+                
             }
 
             return managers;
@@ -37,14 +38,14 @@ namespace Assets.Scripts.Logic.Repositories
         {
             string query = string.Format("SELECT * FROM Managers WHERE Id = '{0}'", id);
             var record = _dataProvider.GetRecord(query);
-            return ManagerFromRecord(record);
+            return GetManagerFromRecord(record);
         }
 
         public Manager GetManagerByName(string name)
         {
             string query = string.Format("SELECT * FROM Managers WHERE Name = '{0}'", name);
             var record = _dataProvider.GetRecord(query);
-            return ManagerFromRecord(record);
+            return GetManagerFromRecord(record);
         }
 
         public Manager NewPlayerManager()
@@ -59,16 +60,12 @@ namespace Assets.Scripts.Logic.Repositories
 
         #region private
 
-        private Manager ManagerFromRecord(IDictionary<string, object> record)
+        private Manager GetManagerFromRecord(IDictionary<string,object> record)
         {
-            Manager manager = null;
+            var manager = DataHelper.CreateModelFromData<Manager>(record);
 
-            if ((record != null) && (record.Count > 0))
+            if (manager != null)
             {
-                manager = new Manager();
-
-                DataHelper.MapDataToModel(manager, record);
-
                 //wont come from generic MapDataToModel, also will be ignored when MapDataToModel does a Gladiator
                 manager.Gladiators = _gladiatorRepository.GetGladiatorsByManagerId(manager.Id);
             }
