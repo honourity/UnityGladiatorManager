@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Prefabs;
 
-namespace Assets.Scripts.MenuScene.NewGameCanvas
+namespace Assets.Scripts.Scenes.MenuScene.NewGameCanvas
 {
     public class GladiatorLayoutScript : MonoBehaviour
     {

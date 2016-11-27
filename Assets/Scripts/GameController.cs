@@ -16,14 +16,24 @@ namespace Assets.Scripts
         public static IManagerRepository ManagerRepository;
         public static IGladiatorRepository GladiatorRepository;
 
-        private GameState _gameState;
+        public static GameState GameState;
 
         public UnityEngine.UI.Text LoadGameDropdownText;
 
         public void LoadGame()
         {
-            _gameState.Player = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
-            _gameState.Config = ConfigurationRepository.GetAllConfiguration();
+            GameState.Player = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
+            GameState.Config = ConfigurationRepository.GetAllConfiguration();
+
+            SceneManager.LoadScene("Game Scene");
+        }
+
+        public void NewGame()
+        {
+            //todo - setManager new manager
+            //todo - create gamestate configuration and save to database
+            //_gameState.Player = ManagerRepository.GetManagerByName(LoadGameDropdownText.text);
+            //_gameState.Config = ConfigurationRepository.GetAllConfiguration();
 
             SceneManager.LoadScene("Game Scene");
         }
@@ -37,7 +47,7 @@ namespace Assets.Scripts
             ManagerRepository = new ManagerRepository();
             GladiatorRepository = new GladiatorRepository();
 
-            _gameState = new GameState();
+            GameState = new GameState();
         }
 
         // Use this for initialization

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
 
-namespace Assets.Scripts.MenuScene.LoadGameCanvas
+namespace Assets.Scripts.Scenes.MenuScene.LoadGameCanvas
 {
     public class DropdownScript : MonoBehaviour
     {
